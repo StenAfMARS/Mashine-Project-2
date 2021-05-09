@@ -161,43 +161,51 @@ int main()
 	
 	char tempArray[20];
 	FILE* fp;
-	bool endOfGame = 
-	printf("type command");
-	int Input = scanf("%d", &Input);;
-	
-	switch (Input)
+	char name[20];
+	bool endOfGame = false;
+	int Input;
+	while(endOfGame == false)
 	{
-		// Load Deck
-	case 1: // LD = 1
-		
+		printf("type command");
+		scanf("%d", &Input);;
 
-		printf("Name File");
-		fp = fopen("testData.txt", "r");		// Open the file with 'read' option.	''
-		if (fp == NULL) { exit(-1); }
-		while (!feof(fp)) {
+		switch (Input)
+		{
+			// Load Deck
+		case 1: // LD = 1
 
-			fgets(tempArray, 20, fp);
-			if (tempArray[strlen(tempArray) - 1] == '\n') {
-				tempArray[strlen(tempArray) - 1] = 0;
+
+			printf("Name File");
+			scanf("%s", name);
+			fp = fopen(name, "r");		// Open the file with 'read' option.	''
+			if (fp == NULL) { exit(-1); }
+			while (!feof(fp)) {
+
+				fgets(tempArray, 20, fp);
+				if (tempArray[strlen(tempArray) - 1] == '\n') {
+					tempArray[strlen(tempArray) - 1] = 0;
+				}
+				push();
+				tail->data = strdup(tempArray);
 			}
-			push();
-			tail->data = strdup(tempArray);
-		}
-		fclose(fp);
-		printList();
-		printf("\n");
-		generateGameBoard();
-		generateGameBoard();
-		break;
+			fclose(fp);
+			printList();
+			printf("\n");
+			generateGameBoard();
+			generateGameBoard();
+			break;
 
-		//show Deck
-	case 2: // SD = 2
-		break;
-	case 3: // End = 3
-		break;
-	default:
-		printf("Unknown command");
+			//show Deck
+		case 2: // SD = 2
+			break;
+		case 3: // End = 3
+			endOfGame = true;
+			break;
+		default:
+			printf("Unknown command");
+		}
 	}
+
 
 	return 0;
 }
