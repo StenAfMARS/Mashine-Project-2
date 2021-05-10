@@ -223,9 +223,9 @@ void init_new_game()
 	struct C7* C7 = (struct C7*)malloc(sizeof(struct C7));
 
 	struct F1* F1 = (struct F1*)malloc(sizeof(struct F1));
-	struct F1* F2 = (struct F2*)malloc(sizeof(struct F2));
-	struct F1* F3 = (struct F3*)malloc(sizeof(struct F3));
-	struct F1* F4 = (struct F4*)malloc(sizeof(struct F4));
+	struct F2* F2 = (struct F2*)malloc(sizeof(struct F2));
+	struct F3* F3 = (struct F3*)malloc(sizeof(struct F3));
+	struct F4* F4 = (struct F4*)malloc(sizeof(struct F4));
 	
 }
 
