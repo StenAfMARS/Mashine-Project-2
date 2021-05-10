@@ -6,7 +6,10 @@
 #include <stdlib.h> // For exit() function
 #include <assert.h>
 #include <string.h>
+#include "structs.h"
+
 char lastComment[24];
+
 struct Node {
 	char* data;
 	struct Node* next; // Pointer to next node in DLL
@@ -16,8 +19,9 @@ struct Node {
 struct Node* head;
 struct Node* tail;
 struct Node* Cards;
+
 void swap();
-void cutDeck();
+void cutDeck(int);
 void safeToFile();
 void gameBegan();
 void push();
