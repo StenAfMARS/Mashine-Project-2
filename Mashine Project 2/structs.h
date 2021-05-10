@@ -3,6 +3,12 @@
 
 #include "Mashine Project 2.h"
 
+struct Deck
+{
+	char card[2];
+	struct card* next;
+};
+
 struct C1
 {
 	char card[2];

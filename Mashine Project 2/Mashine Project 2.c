@@ -98,7 +98,13 @@ void update_game_board()
 
 void init_new_game()
 {
-	struct C1* new_card = (struct C1*)malloc(sizeof(struct C1));
+	struct C1* C1 = (struct C1*)malloc(sizeof(struct C1));
+	struct C2* C2 = (struct C2*)malloc(sizeof(struct C2));
+	struct C3* C3 = (struct C3*)malloc(sizeof(struct C3));
+	struct C4* C4 = (struct C4*)malloc(sizeof(struct C4));
+	struct C5* C5 = (struct C5*)malloc(sizeof(struct C5));
+	struct C6* C6 = (struct C6*)malloc(sizeof(struct C6));
+	struct C7* C7 = (struct C7*)malloc(sizeof(struct C7));
 	
 }
 
