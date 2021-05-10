@@ -2,11 +2,6 @@
 // ReSharper disable CppInconsistentNaming
 
 #include "Mashine Project 2.h"
-#include <stdio.h>
-#include <stdlib.h> // For exit() function
-#include <assert.h>
-#include <string.h>
-#include "structs.h"
 
 char lastComment[24];
 
@@ -250,6 +245,7 @@ int main()
 
 	int number;
 	int position;
+	
 	while(endOfGame == false)
 	{
 		printf("type command: ");
