@@ -237,8 +237,8 @@ int main()
 	int position;
 	while(endOfGame == false)
 	{
-		printf("type command");
-		scanf("%d", &Input);;
+		printf("type command: ");
+		scanf("%d", &Input);
 
 		switch (Input)
 		{
@@ -247,7 +247,7 @@ int main()
 
 			head = NULL;
 			tail = NULL;
-			printf("Name File");
+			printf("Name File: ");
 			scanf("%s", name);
 			fp = fopen(name, "r");		// Open the file with 'read' option.	''
 			if (fp == NULL) { exit(-1); }
