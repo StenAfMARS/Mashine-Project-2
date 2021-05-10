@@ -6,6 +6,8 @@
 #include <stdlib.h> // For exit() function
 #include <assert.h>
 #include <string.h>
+#include "structs.h"
+
 char lastComment[24];
 struct Node {
 	char* data;
