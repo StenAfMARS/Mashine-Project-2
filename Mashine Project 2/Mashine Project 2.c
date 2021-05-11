@@ -68,13 +68,13 @@ void loadDeck()
 	Cards = head;
 	//Generate grid space
 	bool endOfNode = false;
-	for (int j = 1; j <= 7; j++)
+	for (int j = 1; j <= 8; j++)
 	{
 		for (int k = 0; k < 7; k++)
 		{
 			if (k == 0)
 			{
-				
+				printf(" \[]\t", grid[j][k]);
 
 			}
 			else
@@ -131,7 +131,7 @@ void ShowDeck()
 	Cards = head;
 	//Generate grid space
 	bool endOfNode = false;
-	for (int j = 1; j <= 7; j++)
+	for (int j = 1; j <= 8; j++)
 	{
 		for (int k = 0; k < 7; k++)
 		{
@@ -317,7 +317,23 @@ int main()
 }
 void cutDeck(int cut) {
 	struct Node* node1 = head;
-	struct Node* node2 = head;
+	struct Node* node2;
+	Cards = head;
+	int i = 0; 
+	while (Cards->next != NULL) {
+		Cards = Cards->next;
+		i++;
+	}
+	for (int j = 0; j <= i; i++) {
+		if (j < i / 2) {
+			head = head->next;
+		}
+		if (j >= i / 2) {
+			node2->data = head->data;
+			node2 = node2->next;
+			head = head->next;
+		}
+	}
 	for (int i = 0; i <= cut; i++) {
 		node2->data = node1->data;
 		node1 = node1->next;
@@ -344,7 +360,6 @@ void cutDeck(int cut) {
 	}
 	*/
 }
-//Doubly Linked List
 void swap() {
 	struct Node* node1 = head;
 	struct Node* node2 = head;
@@ -391,6 +406,7 @@ void safeToFile() {
 
 void gameBegan() {
 	bool gameStarted = true;
+	gamesetup();
 		while(gameStarted == true)
 		{
 			int Input2;
@@ -407,6 +423,70 @@ void gameBegan() {
 			
 		}
 }
+void gamesetup()
+{
+	system("cls");
+
+
+	char Hidden = "0";
+
+	// need generate card function
+	char card = "C";
+
+	//first loop work with row
+	printf(" C1\tC2\tC3\tC4\tC5\tC6\tC7\n");
+	printf("\n");
+
+	Cards = head;
+	//Generate grid space
+	bool endOfNode = false;
+	for (int j = 1; j <= 8; j++)
+	{
+		for (int k = 0; k < 7; k++)
+		{
+			if (k == 0)
+			{
+				printf(" \[]\t", grid[j][k]);
+
+			}
+			else
+			{
+				printf(" \[]\t", grid[j][k]);
+
+			}
+		}
+
+		if (j == 1)
+		{
+			printf("\t\[]\tF%d\n", j);
+		}
+		else
+		{
+			if (j == 3)
+			{
+				printf("\t\[]\tF%d\n", j - 1);
+			}
+			else
+			{
+				if (j == 5)
+				{
+					printf("\t\[]\tF%d\n", j - 2);
+				}
+				else
+				{
+					if (j == 7)
+					{
+						printf("\t\[]\tF%d\n", j - 3);
+					}
+					else
+					{
+						printf("\n");
+					}
+				}
+			}
+		}
+	}
+}
 void push(){
 	    
     if(head != NULL){
@@ -420,38 +500,6 @@ void push(){
         head->prev = NULL;
         head->next = NULL;
         tail = head;
-        printf("Node specific addr: %p\n", head);
     }
 
 } 
-
-void pop(){
-    if(tail!=NULL){
-        struct Node* temp1;
-        if(tail->prev != NULL){
-            temp1 = tail;
-            tail = tail->prev;
-            free(temp1);
-            tail->next = NULL;
-        }
-    } else { printf("List is empty.\n"); }
-}
-
-/* Use this function to print out the current contents of memory. */
-void printList(){
-	
-	printf("------------------------------------"	
-		   "\n------------------------------------"
-		   "\nThis function will print info from all the nodes.\n");
-	struct Node* Derpina = head;
-	int derp =1;
-	while (1==1){
-		printf("Node data : %s\n", Derpina->data);
-		if(Derpina->next == NULL){ // reached the last node, so stop iterating
-			break;	
-		} else {
-			Derpina = Derpina->next;
-		}	
-	}	
-	return;
-}
