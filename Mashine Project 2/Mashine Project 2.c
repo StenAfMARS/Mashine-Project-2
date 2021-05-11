@@ -65,13 +65,14 @@ void loadDeck()
 	Cards = head;
 	//Generate grid space
 	bool endOfNode = false;
-	for (int j = 1; j <= 7; j++)
+	for (int j = 1; j <= 8; j++)
 	{
 		for (int k = 0; k < 7; k++)
 		{
 			if (k == 0)
 			{
 				
+				printf(" \[]\t", grid[j][k]);
 
 			}
 			else
@@ -260,19 +261,40 @@ int main()
 			tail = NULL;
 			printf("Name File: ");
 			scanf("%s", name);
-			fp = fopen(name, "r");		// Open the file with 'read' option.	''
-			if (fp == NULL) { exit(-1); }
-			while (!feof(fp)) {
+			if(true)
+			{
+				fp = fopen(name, "r");		// Open the file with 'read' option.	''
+				if (fp == NULL) { exit(-1); }
+				while (!feof(fp)) {
 
-				fgets(tempArray, 20, fp);
-				if (tempArray[strlen(tempArray) - 1] == '\n') {
-					tempArray[strlen(tempArray) - 1] = 0;
+					fgets(tempArray, 20, fp);
+					if (tempArray[strlen(tempArray) - 1] == '\n') {
+						tempArray[strlen(tempArray) - 1] = 0;
+					}
+					push();
+					tail->data = strdup(tempArray);
 				}
-				push();
-				tail->data = strdup(tempArray);
+				fclose(fp);
+				loadDeck();
 			}
-			fclose(fp);
-			loadDeck();
+			else
+			{
+				
+				fp = fopen("deck.txt", "r");		// Open the file with 'read' option.	''
+				if (fp == NULL) { exit(-1); }
+				while (!feof(fp)) {
+
+					fgets(tempArray, 20, fp);
+					if (tempArray[strlen(tempArray) - 1] == '\n') {
+						tempArray[strlen(tempArray) - 1] = 0;
+					}
+					push();
+					tail->data = strdup(tempArray);
+				}
+				fclose(fp);
+				loadDeck();
+			}
+			
 			break;
 
 			//show Deck
@@ -316,31 +338,27 @@ int main()
 void cutDeck(int cut) {
 	struct Node* node1 = head;
 	struct Node* node2 = head;
-	for (int i = 0; i <= cut; i++) {
-		node2->data = node1->data;
-		node1 = node1->next;
-		node2 = node2->next;
-	}
-	/*
-	while (node1->next != NULL)
-	{
-		node1 = node1->next;
-		if (node1 == NULL) {
-			node1 = head;
-		}
-		for (int i = rand() % 3; i >= 0; i--) {
-			node2 = node2->next;
-			if (node2 == NULL) {
-				node2 = head;
-
-			}
-		}
-		char* placeHolder = node1->data;
-		node1->data = node2->data;
-		node2->data = placeHolder;
-
-	}
-	*/
+	
+	Cards = head;
+    int i = 1; 
+    while (Cards->next != NULL) {
+        Cards = Cards->next;
+        i++;
+    }
+    for (int j = 0; j <= i; j++) {
+        if (j < i / 2) {
+            head = head->next;
+        }
+        if (j >= i / 2) {
+        	if(head != NULL)
+        	{
+        		node2->data = head->data;
+				node2 = node2->next;
+				head = head->next;
+        	}
+            
+        }
+    }
 }
 //Doubly Linked List
 void swap() {
@@ -433,23 +451,4 @@ void pop(){
             tail->next = NULL;
         }
     } else { printf("List is empty.\n"); }
-}
-
-/* Use this function to print out the current contents of memory. */
-void printList(){
-	
-	printf("------------------------------------"	
-		   "\n------------------------------------"
-		   "\nThis function will print info from all the nodes.\n");
-	struct Node* Derpina = head;
-	int derp =1;
-	while (1==1){
-		printf("Node data : %s\n", Derpina->data);
-		if(Derpina->next == NULL){ // reached the last node, so stop iterating
-			break;	
-		} else {
-			Derpina = Derpina->next;
-		}	
-	}	
-	return;
 }
