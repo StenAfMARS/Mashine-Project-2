@@ -25,6 +25,7 @@ void cutDeck(int);
 void safeToFile();
 void gameBegan();
 void printList();
+void push();
 
 /*
  * Node operations
@@ -39,7 +40,7 @@ void moveCard(int from, int to);
 // moves all cards below specified index from 1st column to bottom of 2nd column.
 void moveCards(int from, int to, int cardIndex);
 
-void push(int column);
+//void push(int column);
 void pop(int column);
 
 /*Print operations*/
@@ -320,7 +321,7 @@ int main()
 					if (tempArray[strlen(tempArray) - 1] == '\n') {
 						tempArray[strlen(tempArray) - 1] = 0;
 					}
-					push();
+					//push();
 					tail->data = strdup(tempArray);
 				}
 				fclose(fp);
