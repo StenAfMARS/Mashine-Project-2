@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <assert.h>
 #include "structs.h"
 
 // TODO: Reference additional headers your program requires here.
