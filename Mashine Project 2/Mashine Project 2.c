@@ -7,6 +7,7 @@ char lastComment[24];
 
 struct Node {
 	char* data;
+	int isHidden; 
 	struct Node* next; // Pointer to next node in DLL
 	struct Node* prev; // Pointer to previous node in DLL
 };
@@ -15,14 +16,45 @@ struct Node* head;
 struct Node* tail;
 struct Node* Cards;
 
+
+/* 
+ * Logical operations
+ */
 void swap();
 void cutDeck(int);
 void safeToFile();
 void gameBegan();
-void push();
-void pop();
 void printList();
+
+/*
+ * Node operations
+ */
+
+//Moves head from first column to tail in 2nd column
+void moveFromHead(int from, int to);
+
+// moves card from 1st column to 2nd column
+void moveCard(int from, int to);
+
+// moves all cards below specified index from 1st column to bottom of 2nd column.
+void moveCards(int from, int to, int cardIndex);
+
+void push(int column);
+void pop(int column);
+
+/*Print operations*/
+void printDeck();
+void printConsole();
+
+/*global variables*/
 int grid[7][8];
+
+/*
+ * 0-6 is columns
+ * Fra 7-10 are foundations.
+ * 11 is hidden.
+ */
+struct Node* columns[12];
 
 void initializeGameScreen()
 {
@@ -356,8 +388,9 @@ void cutDeck(int cut) {
 				node2 = node2->next;
 				head = head->next;
         	}
-            
         }
+    	char*placeHolder = node2 ->data;
+    	
     }
 }
 void swap() {
@@ -406,7 +439,7 @@ void safeToFile() {
 
 void gameBegan() {
 	bool gameStarted = true;
-	gamesetup();
+	//gamesetup();
 		while(gameStarted == true)
 		{
 			int Input2;
@@ -487,6 +520,7 @@ void gamesetup()
 		}
 	}
 }
+
 void push(){
 	    
     if(head != NULL){
